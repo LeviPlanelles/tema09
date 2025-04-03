@@ -1,7 +1,6 @@
-package com.marcosferrandiz.Ejercicio4;
+package com.leviplanelles.Ejercicio4;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Cola<T> implements ICola{
 

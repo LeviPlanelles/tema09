@@ -1,11 +1,9 @@
-package com.marcosferrandiz.Ejercicio1;
+package com.leviplanelles.Ejercicio1;
 
 
-import com.marcosferrandiz.lib.Aleatorios;
+import com.leviplanelles.lib.Aleatorios;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Ejercicio1 {
     public static void main(String[] args) {

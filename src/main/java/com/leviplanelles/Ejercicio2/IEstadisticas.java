@@ -1,4 +1,4 @@
-package com.marcosferrandiz.Ejercicio2;
+package com.leviplanelles.Ejercicio2;
 
 public interface IEstadisticas {
     double minimo();

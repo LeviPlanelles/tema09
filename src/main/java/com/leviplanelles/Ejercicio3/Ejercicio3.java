@@ -1,7 +1,4 @@
-package com.marcosferrandiz.Ejercicio3;
-
-import java.lang.reflect.Array;
-import java.util.Stack;
+package com.leviplanelles.Ejercicio3;
 
 public class Ejercicio3 {
     public static void main(String[] args) {
@@ -20,6 +17,5 @@ public class Ejercicio3 {
         System.out.println(pila.toString());
         System.out.println("Top: "+ pila.top());
 
-        //Stack = Pila?
     }
 }

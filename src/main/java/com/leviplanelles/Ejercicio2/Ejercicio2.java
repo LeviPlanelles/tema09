@@ -1,10 +1,8 @@
-package com.marcosferrandiz.Ejercicio2;
+package com.leviplanelles.Ejercicio2;
 
-import com.marcosferrandiz.lib.Aleatorios;
-import com.marcosferrandiz.lib.SolicitarCosas;
+import com.leviplanelles.lib.Aleatorios;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Ejercicio2 {
     public static void main(String[] args) {

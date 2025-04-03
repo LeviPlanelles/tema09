@@ -1,4 +1,4 @@
-package com.marcosferrandiz.lib;
+package com.leviplanelles.lib;
 
 public class Strings {
     /**
