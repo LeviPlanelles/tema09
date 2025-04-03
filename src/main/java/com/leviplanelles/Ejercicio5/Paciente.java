@@ -9,10 +9,25 @@ public class Paciente {
         M,F
     }
     public enum MensajeIMC {
-        INSUFICIENTE, NORMAL, GRADO1, GRADO2, GRADO3;
-    }
+        INSUFICIENTE("Peso Insuficiente"),
+        NORMAL("Peso Normal"),
+        GRADO1("Sobrepeso Grado I"),
+        GRADO2("Sobrepeso Grado II"),
+        GRADO3("Sobrepeso Grado III"),
+        POR_DEFECTO("Por defecto");
 
-    private int identificador = 1;
+        private String texto;
+        private MensajeIMC(String texto) {
+            this.texto = texto;
+        }
+
+        @Override
+        public String toString() {
+            return texto;
+        }
+    }
+    private static int contadorIdentificadores = 1;
+    private int identificador;
     private final String nombre;
     private LocalDate fechaNac;
     private Sexo genero;
@@ -20,7 +35,7 @@ public class Paciente {
     private double peso;
 
     public Paciente(String nombre, LocalDate fechaNac, Sexo genero, double altura, double peso) {
-        identificador++;
+        this.identificador = contadorIdentificadores++;
         this.nombre = nombre;
         this.fechaNac = fechaNac;
         this.genero = genero;
@@ -51,7 +66,7 @@ public class Paciente {
         return pacientesMayorMenor;
     }
 
-    public int[] pacientesPorSexo(List<Paciente> pacientes) {
+    public static int[] pacientesPorSexo(List<Paciente> pacientes) {
         int male = 0;
         int female = 0;
         for (Paciente paciente : pacientes) {
@@ -63,13 +78,26 @@ public class Paciente {
         int[] pacientesPorSexo = {male,female};
         return pacientesPorSexo;
     }
-    /*
-    public MensajeIMC mensajeIMC(Paciente paciente) {
-        if ()
-    }*/
 
-    public double getIndiceMasaCorporal(Paciente paciente) {
-        return paciente.getPeso() / Math.sqrt(paciente.getAltura());
+    public static MensajeIMC mensajeIMC(Paciente paciente) {
+        MensajeIMC mensajeIMC = MensajeIMC.POR_DEFECTO;
+        double weight = getIndiceMasaCorporal(paciente);
+        if (weight < 18.5) {
+            mensajeIMC = MensajeIMC.INSUFICIENTE;
+        } else if (weight < 24.9) {
+            mensajeIMC = MensajeIMC.NORMAL;
+        } else if (weight <= 26.9) {
+            mensajeIMC = MensajeIMC.GRADO1;
+        } else if (weight <= 29.9) {
+            mensajeIMC = MensajeIMC.GRADO2;
+        } else if (weight > 29.9) {
+            mensajeIMC = MensajeIMC.GRADO3;
+        }
+        return mensajeIMC;
+    }
+
+    public static double getIndiceMasaCorporal(Paciente paciente) {
+        return paciente.getPeso() / (paciente.getAltura() * paciente.getAltura());
     }
 
     public int getEdad(Paciente paciente) {
@@ -98,5 +126,17 @@ public class Paciente {
 
     public double getPeso() {
         return peso;
+    }
+
+    @Override
+    public String toString() {
+        return "Paciente{" +
+                "identificador=" + identificador +
+                ", nombre='" + nombre + '\'' +
+                ", fechaNac=" + fechaNac +
+                ", genero=" + genero +
+                ", altura=" + altura +
+                ", peso=" + peso +
+                "}\n";
     }
 }
