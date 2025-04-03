@@ -18,6 +18,12 @@ public class Ejercicio5 {
         pacienteList.add(paciente2);
         pacienteList.add(paciente3);
         pacienteList.add(paciente4);
+        int[] mayorMenor = Paciente.mayorMenor(pacienteList);
+        int indiceMayor = mayorMenor[0];
+        int indiceMenor = mayorMenor[1];
+        System.out.printf("PACIENTE MAYOR Edad: %d Sexo: %s\n",pacienteList.get(indiceMayor).getEdad(),pacienteList.get(indiceMayor).getGenero());
+        System.out.printf("PACIENTE MENOR Edad: %d Sexo: %s\n",pacienteList.get(indiceMenor).getEdad(),pacienteList.get(indiceMenor).getGenero());
+        System.out.println();
 
         int[] porSexo = Paciente.pacientesPorSexo(pacienteList);
         System.out.println("Cantidad de pacientes por sexos:");
@@ -25,7 +31,7 @@ public class Ejercicio5 {
         System.out.println();
 
         for (Paciente p : pacienteList) {
-            System.out.printf("Paciente número %d: %s\n",p.getIdentificador(), Paciente.mensajeIMC(p));
+            System.out.printf("Paciente número %d: %s\n",p.getIdentificador(), p.mensajeIMC());
         }
 
     }

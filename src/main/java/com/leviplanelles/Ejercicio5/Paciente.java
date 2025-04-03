@@ -43,7 +43,7 @@ public class Paciente {
         this.peso = peso;
     }
 
-    public int[] mayorMenor(List<Paciente> pacientes) {
+    public static int[] mayorMenor(List<Paciente> pacientes) {
         int[] pacientesMayorMenor = new int[2];
         Paciente auxEdadMenor = pacientes.get(0);
         Paciente auxEdadMayor = pacientes.get(0);
@@ -79,9 +79,9 @@ public class Paciente {
         return pacientesPorSexo;
     }
 
-    public static MensajeIMC mensajeIMC(Paciente paciente) {
+    public MensajeIMC mensajeIMC() {
         MensajeIMC mensajeIMC = MensajeIMC.POR_DEFECTO;
-        double weight = getIndiceMasaCorporal(paciente);
+        double weight = getIndiceMasaCorporal();
         if (weight < 18.5) {
             mensajeIMC = MensajeIMC.INSUFICIENTE;
         } else if (weight < 24.9) {
@@ -96,12 +96,12 @@ public class Paciente {
         return mensajeIMC;
     }
 
-    public static double getIndiceMasaCorporal(Paciente paciente) {
-        return paciente.getPeso() / (paciente.getAltura() * paciente.getAltura());
+    public double getIndiceMasaCorporal( ) {
+        return peso / (altura * altura);
     }
 
-    public int getEdad(Paciente paciente) {
-        return Period.between(paciente.getFechaNac(),LocalDate.now()).getYears();
+    public int getEdad() {
+        return Period.between(fechaNac,LocalDate.now()).getYears();
     }
 
     public int getIdentificador() {
