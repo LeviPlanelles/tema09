@@ -8,7 +8,7 @@ public class Ejercicio3 {
         pila.push(2);
         pila.push(4);
         pila.push(2);
-        System.out.println("IsEmpry despues de meter: "+ pila.isEmpty());
+        System.out.println("IsEmpty despues de meter: "+ pila.isEmpty());
         System.out.println(pila.toString());
         System.out.println("Size: "+pila.size());
         System.out.println("Top: "+ pila.top());

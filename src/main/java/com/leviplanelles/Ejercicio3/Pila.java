@@ -1,12 +1,12 @@
 package com.leviplanelles.Ejercicio3;
 
 import java.util.ArrayList;
+import java.util.Deque;
 
 public class Pila<T> implements IPila {
     private static final float GROW_FACTOR = 2f;
     private int size;
-    private  ArrayList<T> data;
-
+    private ArrayList<T> data;
 
     public Pila() {
         data = new ArrayList<>();
