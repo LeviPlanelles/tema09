@@ -21,6 +21,7 @@ public class Paciente {
             this.texto = texto;
         }
 
+
         @Override
         public String toString() {
             return texto;
