@@ -55,6 +55,23 @@ public class IO {
 
         return num;
     }
+
+    public static double solicitarDouble(String msj) {
+        double num = 0;
+        boolean valido = false;
+        System.out.print(msj);
+        do {
+            try {
+                num = Double.parseDouble(scanner.nextLine());
+                valido = true;
+            } catch (NumberFormatException nfe) {
+                valido = false;
+                System.err.println("Formato invalido.");
+            }
+        }while (!valido);
+        return num;
+    }
+
     public static boolean esVocal(char c) {
         c = Character.toLowerCase(c);
         String vocales = "aáàAÁÀeéèEÉÈiíìIÍÌoóòOÓÒuúùUÚÙ";

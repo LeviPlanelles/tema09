@@ -1,8 +1,6 @@
 package com.leviplanelles.Ejercicio11;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Centro {
     private final List<Aula> aulas;
@@ -12,7 +10,7 @@ public class Centro {
     private List<Asignatura> asignaturas;
 
     public Centro() {
-        this.aulas = new ArrayList<>();
+        this.aulas = aniadirAulas(10);
         this.alumnos = new ArrayList<>();
         this.profesores = aniadirProfesores(10);
         this.grupos = aniadirGrupos();
@@ -47,9 +45,13 @@ public class Centro {
         return new Asignatura(nombre, profesor);
     }
 
-    public boolean altaProfesor(String dni, String nombre, int sueldo) {
-        profesores.add(new Profesor(dni, nombre, sueldo));
-        return true;
+    public Profesor altaProfesor(String dni, String nombre, int sueldo) {
+        for (Profesor profesor : profesores) {
+            if (dni == profesor.getDni()) {
+                throw new RuntimeException("Ya existe un profesor con este DNI.");
+            }
+        }
+        return new Profesor(dni, nombre, sueldo);
     }
 
     public Grupo altaGrupo(String codigo, String nombre, Aula aula) {
@@ -61,14 +63,13 @@ public class Centro {
         return new Grupo(codigo, nombre, aula);
     }
 
-    public boolean altaAula(String codigo, double metrosCuadrados) {
+    public Aula altaAula(String codigo, double metrosCuadrados) {
         for (Aula aula : aulas) {
             if (codigo.equals(aula.getCodigo())) {
-                return false;
+                throw new RuntimeException("No se ha podido introducir el aula porque ya existe una así");
             }
         }
-        aulas.add(new Aula(codigo, metrosCuadrados));
-        return true;
+        return new Aula(codigo, metrosCuadrados);
     }
 
     public List<Asignatura> generarAsignarutasAuto(int cantidad) {
@@ -105,6 +106,16 @@ public class Centro {
         return gruposArr;
     }
 
+    private ArrayList<Aula> aniadirAulas(int cantidad) {
+        ArrayList<Aula> aulaArrayList = new ArrayList<>();
+        Random random = new Random();
+        for (int i = 0; i < cantidad; i++) {
+            String codigoAula = "CLASS-" + random.nextInt(100,1001) + String.valueOf(random.nextInt(65,91));
+            aulaArrayList.add(new Aula(codigoAula, random.nextDouble(10,30)));
+        }
+        return aulaArrayList;
+    }
+
     private ArrayList<Profesor> aniadirProfesores(int cantidad) {
         Random random = new Random();
         ArrayList<Profesor> profesorArrayList = new ArrayList<>();
@@ -130,6 +141,25 @@ public class Centro {
         }
         throw new RuntimeException("No se ha encontrado ese grupo");
     }
+
+    public Map<Grupo,ArrayList<Alumno>> porGrupo() {
+        Map<Grupo, ArrayList<Alumno>> clase = new HashMap<>();
+        for (Alumno alumno : alumnos) {
+            Grupo grupo = alumno.getGrupo();
+            if (!clase.containsKey(grupo)) {
+                clase.put(grupo,new ArrayList<>());
+                clase.get(grupo).add(alumno);
+            }
+        }
+        return clase;
+    }
+    /*
+    public Map<Profesor,ArrayList<Alumno>> porProfesor() {
+        Map<Profesor, ArrayList<Alumno>> clase = new HashMap<>();
+        for (Alumno alumno : alumnos) {
+            Profesor profesor = alumno.
+        }
+    }*/
 
     @Override
     public String toString() {
