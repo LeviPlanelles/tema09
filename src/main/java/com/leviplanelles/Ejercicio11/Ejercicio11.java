@@ -90,8 +90,9 @@ public class Ejercicio11 {
     public static void altaGrupo() {
         String codigo = IO.solicitarString("Código del nuevo grupo: ");
         String nombre = IO.solicitarString("Nombre del grupo: ");
+        int contador = 0;
         for (Aula aula : centro.getAulas()) {
-            System.out.println(aula);
+            System.out.println(++contador + ". " + aula.getCodigo());
         }
         String codAula = IO.solicitarString("Selecciona un aula (código): ");
         for (Aula aula : centro.getAulas()) {
